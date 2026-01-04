@@ -17,11 +17,45 @@ npm run build
 
 ### 3. 本地测试
 
-```bash
-# 开发模式运行
-npm run dev init vibe-sandbox my-test-project
+#### 方式一：使用 npm link（推荐）
 
-# 或使用编译后的文件
+这种方式可以在任何目录下使用 `bequickly` 命令，就像全局安装一样：
+
+```bash
+# 1. 确保项目已构建
+npm run build
+
+# 2. 在 bequickly 目录下创建全局链接
+npm link
+
+# 3. 现在可以在任何目录下使用 bequickly 命令
+cd /path/to/anywhere
+bequickly init vibe-sandbox my-test-project
+bequickly list
+bequickly --version
+
+# 4. 测试完成后，取消链接（可选）
+npm unlink -g bequickly
+```
+
+**注意：**
+- 每次修改代码后，需要重新运行 `npm run build` 才能看到更改
+- 如果修改了代码但没有重新构建，链接的命令仍会使用旧的编译文件
+
+#### 方式二：开发模式运行
+
+```bash
+# 直接运行 TypeScript 源码（无需构建）
+npm run dev init vibe-sandbox my-test-project
+```
+
+#### 方式三：使用编译后的文件
+
+```bash
+# 先构建
+npm run build
+
+# 然后运行编译后的文件
 node dist/cli.js init vibe-sandbox my-test-project
 ```
 
