@@ -1,7 +1,7 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import chalk from 'chalk';
-import { getTemplatesDir } from '../utils/paths';
+import { getTemplatesDir, getCommandName } from '../utils/paths';
 
 export async function addCommand(templateName: string, templatePath: string) {
   try {
@@ -17,8 +17,9 @@ export async function addCommand(templateName: string, templatePath: string) {
 
     // 检查模板是否已存在
     if (await fs.pathExists(targetPath)) {
+      const cmdName = getCommandName();
       console.error(chalk.red(`Template "${templateName}" already exists.`));
-      console.log(chalk.yellow(`Use "bequickly delete ${templateName}" to remove it first.`));
+      console.log(chalk.yellow(`Use "${cmdName} delete ${templateName}" to remove it first.`));
       process.exit(1);
     }
 

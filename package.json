@@ -4,7 +4,10 @@
   "description": "A CLI tool for quickly generating projects from templates",
   "main": "dist/index.js",
   "bin": {
-    "bequickly": "./dist/cli.js"
+    "bequickly": "./dist/cli.js",
+    "bq": "./dist/cli.js",
+    "bequicklyproject": "./dist/cli.js",
+    "bqp": "./dist/cli.js"
   },
   "engines": {
     "node": ">=14.0.0"
@@ -12,6 +15,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsx src/cli.ts",
+    "link": "npm run build && npm link",
+    "unlink": "npm unlink -g bequickly",
     "prepublishOnly": "npm run build"
   },
   "keywords": [

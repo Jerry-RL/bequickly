@@ -1,13 +1,15 @@
 import chalk from 'chalk';
 import { getTemplatesWithVersions } from '../utils/template';
+import { getCommandName } from '../utils/paths';
 
 export async function listCommand() {
   try {
     const templates = await getTemplatesWithVersions();
     
     if (templates.length === 0) {
+      const cmdName = getCommandName();
       console.log(chalk.yellow('No templates available.'));
-      console.log(chalk.gray('Use "bequickly add <template-name> <template-path>" to add a template.'));
+      console.log(chalk.gray(`Use "${cmdName} add <template-name> <template-path>" to add a template.`));
       return;
     }
 

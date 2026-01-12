@@ -10,14 +10,18 @@ import { listCommand } from './commands/list';
 import * as fs from 'fs';
 import * as path from 'path';
 
+import { getCommandName } from './utils/paths';
+
 const packageJson = JSON.parse(
   fs.readFileSync(path.join(__dirname, '../package.json'), 'utf-8')
 );
 
+// 根据调用的命令名称设置程序名称
+const commandName = getCommandName();
 const program = new Command();
 
 program
-  .name('bequickly')
+  .name(commandName)
   .description('A CLI tool for quickly generating projects from templates')
   .version(packageJson.version);
 

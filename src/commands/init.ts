@@ -2,9 +2,10 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
-import { getTemplatesDir } from '../utils/paths';
+import { getTemplatesDir, getCommandName } from '../utils/paths';
 import { getTemplatesList, getTemplatesWithVersions, getTemplateInfo } from '../utils/template';
 import { copyTemplate, replaceTemplateVariables } from '../utils/generator';
+import { installDependencies } from '../utils/installer';
 
 interface InitOptions {
   templateName?: string;
@@ -17,7 +18,8 @@ interface InitOptions {
 
 export async function initCommand(templateName?: string, projectName?: string) {
   try {
-    console.log(chalk.blue.bold('\n🚀 Welcome to bequickly!\n'));
+    const cmdName = getCommandName();
+    console.log(chalk.blue.bold(`\n🚀 Welcome to ${cmdName}!\n`));
 
     // 解析模板名称和版本（支持 template@version 格式）
     let parsedTemplateName = templateName;
@@ -35,7 +37,8 @@ export async function initCommand(templateName?: string, projectName?: string) {
     // 如果没有提供模板名，让用户选择
     if (!parsedTemplateName) {
       if (templates.length === 0) {
-        console.error(chalk.red('No templates available. Use "bequickly add" to add a template.'));
+        const cmdName = getCommandName();
+        console.error(chalk.red(`No templates available. Use "${cmdName} add" to add a template.`));
         process.exit(1);
       }
       
@@ -191,9 +194,15 @@ export async function initCommand(templateName?: string, projectName?: string) {
     });
 
     console.log(chalk.green(`\n✓ Project "${projectName}" created successfully!`));
+    
+    // 自动安装依赖
+    const installSuccess = await installDependencies(projectPath);
+    
     console.log(chalk.blue(`\n📋 Next steps:`));
     console.log(chalk.white(`  cd ${projectName}`));
-    console.log(chalk.white(`  npm install`));
+    if (!installSuccess) {
+      console.log(chalk.white(`  npm install  # or yarn/pnpm install`));
+    }
     console.log(chalk.white(`  npm run dev`));
     console.log(chalk.gray(`\nHappy coding! 🎉\n`));
   } catch (error: any) {

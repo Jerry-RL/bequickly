@@ -1,7 +1,9 @@
 import chalk from 'chalk';
+import { getCommandName } from '../utils/paths';
 
 export function helpCommand() {
-  console.log(chalk.bold('\nbequickly - A CLI tool for quickly generating projects from templates\n'));
+  const cmdName = getCommandName();
+  console.log(chalk.bold(`\n${cmdName} - A CLI tool for quickly generating projects from templates\n`));
   console.log(chalk.bold('Commands:\n'));
   console.log(chalk.cyan('  init [template-name] [project-name]'));
   console.log(chalk.gray('    Initialize a new project from a template\n'));
@@ -22,10 +24,10 @@ export function helpCommand() {
   console.log(chalk.gray('    Show this help message\n'));
   
   console.log(chalk.bold('Examples:\n'));
-  console.log(chalk.white('  bequickly init vibe-sandbox my-project'));
-  console.log(chalk.white('  bequickly init'));
-  console.log(chalk.white('  bequickly add my-template ./path/to/template'));
-  console.log(chalk.white('  bequickly delete my-template'));
-  console.log(chalk.white('  bequickly list\n'));
+  console.log(chalk.white(`  ${cmdName} init vibe-sandbox my-project`));
+  console.log(chalk.white(`  ${cmdName} init`));
+  console.log(chalk.white(`  ${cmdName} add my-template ./path/to/template`));
+  console.log(chalk.white(`  ${cmdName} delete my-template`));
+  console.log(chalk.white(`  ${cmdName} list\n`));
 }
 
