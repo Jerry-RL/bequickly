@@ -44,10 +44,20 @@ Whether you're starting a new Next.js project, React application, or any other t
 npm install -g bequickly
 ```
 
+After installation, you can use the full command `bequickly` or the short alias `bq`:
+
+```bash
+bequickly init template-name project-name
+# or
+bq init template-name project-name
+```
+
 ### Using with npx (No Installation Required)
 
 ```bash
 npx bequickly@latest init template-name project-name
+# or
+npx bq@latest init template-name project-name
 ```
 
 ## 🚀 Quick Start
@@ -61,6 +71,26 @@ bequickly init vibe-sandbox
 
 # Specify both template and project name
 bequickly init vibe-sandbox my-awesome-project
+```
+
+## ⚡ Command Aliases
+
+For faster typing, you can use these short aliases:
+
+- `bq` - Short alias for `bequickly` (equivalent)
+- `bqp` - Short alias for `bequicklyproject` (equivalent)
+
+**Examples:**
+
+```bash
+# Using short aliases
+bq init vibe-sandbox my-project
+bq add my-template ./path/to/template
+bq list
+
+# All commands are equivalent
+bequickly init    # same as: bq init
+bequicklyproject init    # same as: bqp init
 ```
 
 ## 📚 Usage
@@ -143,6 +173,15 @@ bequickly help
 Displays comprehensive help information and usage examples.
 
 ## 📋 Available Commands
+
+### Command Aliases
+
+| Full Command | Short Alias | Description |
+|--------------|-------------|-------------|
+| `bequickly` | `bq` | Main CLI command (equivalent) |
+| `bequicklyproject` | `bqp` | Alternative CLI command (equivalent) |
+
+### Subcommands
 
 | Command | Alias | Description |
 |---------|-------|-------------|

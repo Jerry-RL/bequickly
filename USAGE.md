@@ -28,10 +28,10 @@ npm run build
 # 2. 在 bequickly 目录下创建全局链接
 npm link
 
-# 3. 现在可以在任何目录下使用 bequickly 命令
+# 3. 现在可以在任何目录下使用 bequickly 命令（包括简短别名）
 cd /path/to/anywhere
 bequickly init vibe-sandbox my-test-project
-bequickly list
+bq list  # 使用简短别名
 bequickly --version
 
 # 4. 测试完成后，取消链接（可选）
@@ -76,10 +76,35 @@ npm publish
 发布后，用户可以通过以下方式使用：
 
 ```bash
+# 使用完整命令名
 npx bequickly@latest init vibe-sandbox my-project
+
+# 或使用简短别名（安装后）
+npm install -g bequickly
+bq init vibe-sandbox my-project
+bqp init vibe-sandbox my-project
 ```
 
 ## 命令说明
+
+### 命令别名
+
+为了更快的输入，您可以使用以下简短别名：
+
+- `bq` - `bequickly` 的简短别名（完全等价）
+- `bqp` - `bequicklyproject` 的简短别名（完全等价）
+
+**示例：**
+```bash
+# 使用简短别名
+bq init vibe-sandbox my-project
+bq add my-template ./path/to/template
+bq list
+
+# 所有命令都是等价的
+bequickly init    # 等同于: bq init
+bequicklyproject init    # 等同于: bqp init
+```
 
 ### init - 初始化项目
 
@@ -94,12 +119,16 @@ bequickly init [template-name] [project-name]
 ```bash
 # 完全交互式
 bequickly init
+# 或使用简短别名
+bq init
 
 # 指定模板，交互式输入项目名
 bequickly init vibe-sandbox
+bq init vibe-sandbox
 
 # 完全指定
 bequickly init vibe-sandbox my-project
+bq init vibe-sandbox my-project
 ```
 
 ### add - 添加模板
@@ -111,35 +140,46 @@ bequickly add <template-name> <template-path>
 示例：
 ```bash
 bequickly add my-template ./path/to/template
+# 或使用简短别名
+bq add my-template ./path/to/template
 ```
 
 ### delete - 删除模板
 
 ```bash
 bequickly delete <template-name>
+# 或
+bq delete <template-name>
 ```
 
 示例：
 ```bash
 bequickly delete my-template
+bq delete my-template
 ```
 
 ### gen - 生成项目（init的别名）
 
 ```bash
 bequickly gen [template-name] [project-name]
+# 或
+bq gen [template-name] [project-name]
 ```
 
 ### list - 列出所有模板
 
 ```bash
 bequickly list
+# 或
+bq list
 ```
 
 ### help - 显示帮助
 
 ```bash
 bequickly help
+# 或
+bq help
 ```
 
 ## 模板系统

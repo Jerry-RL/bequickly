@@ -44,10 +44,20 @@
 npm install -g bequickly
 ```
 
+安装后，您可以使用完整命令 `bequickly` 或简短别名 `bq`：
+
+```bash
+bequickly init template-name project-name
+# 或
+bq init template-name project-name
+```
+
 ### 使用 npx（无需安装）
 
 ```bash
 npx bequickly@latest init template-name project-name
+# 或
+npx bq@latest init template-name project-name
 ```
 
 ## 🚀 快速开始
@@ -61,6 +71,26 @@ bequickly init vibe-sandbox
 
 # 指定模板和项目名称
 bequickly init vibe-sandbox my-awesome-project
+```
+
+## ⚡ 命令别名
+
+为了更快的输入，您可以使用以下简短别名：
+
+- `bq` - `bequickly` 的简短别名（等价）
+- `bqp` - `bequicklyproject` 的简短别名（等价）
+
+**示例：**
+
+```bash
+# 使用简短别名
+bq init vibe-sandbox my-project
+bq add my-template ./path/to/template
+bq list
+
+# 所有命令都是等价的
+bequickly init    # 等同于: bq init
+bequicklyproject init    # 等同于: bqp init
 ```
 
 ## 📚 使用方法
@@ -143,6 +173,15 @@ bequickly help
 显示全面的帮助信息和使用示例。
 
 ## 📋 可用命令
+
+### 命令别名
+
+| 完整命令 | 简短别名 | 描述 |
+|---------|---------|------|
+| `bequickly` | `bq` | 主 CLI 命令（等价） |
+| `bequicklyproject` | `bqp` | 替代 CLI 命令（等价） |
+
+### 子命令
 
 | 命令 | 别名 | 描述 |
 |------|------|------|
